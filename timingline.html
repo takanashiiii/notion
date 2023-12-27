@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timeline</title>
+  <link rel="stylesheet" href="./timeline.css">
+  <script>
+    const nodes = []
+    function add() {
+      const tpl = document.querySelector('template')
+      const item = tpl.content.children[0]
+      const timeline = document.querySelector('.timeline')
+      nodes.forEach(it => it.classList.remove('current'))
+      const node = item.cloneNode(true)
+      node.classList.add('current')
+      nodes.push(node)
+      console.log(node, node.classList)
+      timeline.appendChild(node)
+      node.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+    }
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="debug-area">
+      <button onclick="add()">添加活动</button>
+    </div>
+    <div class="timeline-area">
+      <div class="timeline-wrapper">
+        <div class="timeline">
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<template>
+  <div class="timeline-item">
+    <div class="timeline-left">
+      <div class="start-time">14:00</div>
+      <div class="duration">1h</div>
+    </div>
+    <div class="timeline-dot"></div>
+    <div class="timeline-right">
+      <div class="title">和詹姆斯打羽毛球</div>
+      <div class="content">
+        <div class="info">
+          <div class="info-no">
+            <img src="clock.svg" />
+            <span class="info-content">14:00 ~ 15:00</span>
+          </div>
+          <div class="info-location">
+            <img src="location.svg" />
+            <span class="info-content">市中心羽毛球场</span>
+          </div>
+        </div>
+        <div class="join">
+          <button>
+            报名
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+</html>
